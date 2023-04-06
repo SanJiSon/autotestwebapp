@@ -98,9 +98,38 @@ font-family: var(--default-font);
   padding: 0;
   margin: 0;
 }
+
+.progress-button {
+  background: linear-gradient(to right, #00ff00, #00cc00);
+  background-size: 200% auto;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  animation: progress 2s ease-in-out infinite;
+}
+
+@keyframes progress {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
     </style>
 
   <body>
+    <button class="progress-button">ПРОГРЕСС</button>
+
+    <div id="random-square"></div>
+
+
     <section class="config-page conf-items">
     <div class="conf-item" id="zkgu">
       <i class="fas fa-utensils"></i>
@@ -139,10 +168,20 @@ font-family: var(--default-font);
         });
       });
       function showSelectedconfitem() {
-        const message = selectedconfitemId ? `Выбрана тестируемая конфигурация ${selectedconfitemId}` : "Конфигурация не выбрана";
+        const message = selectedconfitemId ? `Выбрана тестируемая конфигурация ${selectedconfitemId}` : "Конфигурация не выбраан";
 
         alert(message);
       }
+
+      const square = document.getElementById('random-square');
+
+setInterval(() => {
+  const words = ['apple', 'banana', 'cherry', 'orange', 'pear'];
+  const randomIndex = Math.floor(Math.random() * words.length);
+  const randomWord = words[randomIndex];
+  square.innerText = randomWord;
+}, 1000);
+
     </script>
 
 <script type="application/javascript">
