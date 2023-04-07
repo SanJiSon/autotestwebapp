@@ -1,7 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html class="light" style="--tg-viewport-height:100vh; --tg-viewport-stable-height:100vh;">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, 
+                                   user-scalable=no"shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="MobileOptimized" content="176">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="robots" content="noindex, nofollow">
+    <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+      function setThemeClass() {
+        document.documentElement.className = Telegram.WebApp.colorScheme;
+      }
+      Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+      setThemeClass();
+    </script>
     <title>Пример</title>
     <style>
       body {
@@ -10,7 +26,7 @@
 
       .container {
         margin: 10px 0;
-        padding: 20px 20px 10px;
+        padding: 20px 20px 8px;
         border-radius: 12px;
         box-shadow:
           0 6px 38px #20202012,
@@ -18,46 +34,33 @@
           0 2.7216px 9.3024px #2020200a,
           0 1.0944px 4.0736px #20202008,
           0 .2448px 1.7632px #20202005;
+        user-select: none;
       }
 
       .title {
-        margin-bottom: 16px;
+        margin-bottom: 12px;
         color: #6b7280;
         font-family: "Public Sans", sans-serif;
         font-size: 16px;
         font-weight: 600;
-        letter-spacing: .5px;
-      }
-
-      .header-content {
-        display: grid;
-        grid-template-columns: 1fr 100px 180px;
-        gap: 12px;
-        align-items: center;
-        padding-bottom: 12px;
-        color: #6b7280;
-        border-bottom: 1px solid #e5e5e5;
-        font-family: "Public Sans", sans-serif;
-        font-weight: 600;
-        font-size: 14px;
+        letter-spacing: .4px;
       }
 
       .conf-item {
         display: grid;
-        grid-template-columns: 44px 1fr 100px 180px;
-        gap: 12px;
+        grid-template-columns: 1fr 8fr 2fr 3fr;
+        gap: 16px;
         align-items: center;
         padding: 12px 0;
-      }
-
-      .conf-item:not(:last-child) {
-        border-bottom: 1px solid #e5e5e5;
+        border-top: 1px solid #e5e5e5;
       }
 
       img {
-        width: 37px;
-        height: 32px;
+        width: 44px;
+        height: 44px;
         object-fit: cover;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
       }
       
       small {
@@ -68,45 +71,88 @@
       .text-center {
         text-align: center;
       }
+
+      i {
+        font-size: 20px;
+      }
+
+      .fa-cloud {
+        color: #dfdcdc;
+      }
+
+      .fa-circle-check {
+        color: #4CBB17;
+      }
       
       button {
         width: 100%;
-        padding: 8px 16px;
-        background-color: #4CAF50;
+        padding: 8px 12px;
+        background-color:  #228B22;
         color: white;
-        border: none;
-        border-radius: 4px;
+        border: 1px solid #228B22;
+        border-radius: 8px;
         cursor: pointer;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
       }
       
       button:hover {
-        background-color: #3e8e41;
+        background-color: #006633;
       }
 
-      /* @media screen and (min-width: 768px) {
-        .title {
-          font-size: 20px;
-        }
+      button:disabled {
+        background-color: #f8f8f8;
+        color: #b6b6b6;
+        border-color: #f8f8f8;
+        cursor: not-allowed;
+      }
 
-        .header-content {
-          grid-template-columns: 60px 1fr 100px 180px;
-          gap: 20px;
-          padding-bottom: 12px;
-          font-size: 20px;
-        }
+      .tabs {
+        font-size: 0;
+      }
 
-        .conf-item {
-          display: grid;
-          grid-template-columns: 60px 1fr 100px 180px;
-          gap: 20px;
-          padding: 20px 0;
-        }
+      .tabs > input[type="radio"] {
+        display: none;
+      }
 
-        img {
-          width: 60px;
-          height: 60px;
-        }
-      } */
+      .tabs > div {
+        display: none;
+        border: 1px solid #e0e0e0;
+        padding: 10px 15px;
+        font-size: 16px;
+      }
+
+      #tab-btn-1:checked ~ #content-1,
+      #tab-btn-2:checked ~ #content-2,
+      #tab-btn-3:checked ~ #content-3 {
+        border-radius: 10px;
+        display: block;
+      }
+
+      .tabs > label {
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        background-color: #f5f5f5;
+        border: 1px solid #e0e0e0;
+        padding: 2px 8px;
+        font-size: 16px;
+        line-height: 1.5;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        cursor: pointer;
+        position: relative;
+        top: 1px;
+      }
+
+      .tabs > label:not(:first-of-type) {
+        border-left: none;
+      }
+
+      .tabs > input[type="radio"]:checked + label {
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+      }
+      
     </style>
   </head>
   
@@ -114,67 +160,146 @@
     <div class="container">
       <div class="title">Список конфигураций</div>
       <div class="content">
-        <div class="header-content">
-          <div>Конфигурация</div>
-          <div class="text-center">Прогресс</div>
-          <div class="text-center">Действия</div>
-        </div>
         <div class="conf-item">
-          <img class="icon" src="src/Зарплата.png"></img>
+          <img src="./src/Зарплата.png"></img>
           <div>
             ЗКГУ<br>
             <small>Зарплата и Кадры</small>
           </div>
-          <div class="text-center">40%</div>
-          <div class="btn">
+          <div class="text-center">
+            <i class="fa-solid fa-cloud"></i>
+          </div>
+          <div id="btn" class="btn">
             <button>Запустить</button>
           </div>
         </div>
         <div class="conf-item">
-          <img class="icon" src="src/Бухгалтерия .png"></img>
+          <img src="./src/Бухгалтерия.png"></img>
           <div>
             БГУ<br>
             <small>Бухгалтерия гос. учреждения</small>
           </div>
-          <div class="text-center">20%</div>
+          <div class="text-center">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
           <div class="btn">
             <button>Запустить</button>
           </div>
         </div>
         <div class="conf-item">
-          <img class="icon" src="src/Кадры.png"></img>
+          <img src="./src/Кадры.png"></img>
           <div>
             Кадры 2.0<br>
             <small>Управление кадрами</small>
           </div>
-          <div class="text-center">70%</div>
+          <div class="text-center">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
           <div class="btn">
             <button>Запустить</button>
           </div>
         </div>
         <div class="conf-item">
-          <img class="icon" src="src/Аптека.png"></img>
+          <img src="./src/Аптека.png"></img>
           <div>
             Аптека<br>
             <small>Управление аптекой</small>
           </div>
-          <div class="text-center">90%</div>
+          <div class="text-center">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
           <div class="btn">
             <button>Запустить</button>
           </div>
         </div>
         <div class="conf-item">
-          <img class="icon" src="src/Сервис.png"></img>
+          <img src="./src/Сервис.png"></img>
           <div>
             МС<br>
             <small>Менеджер сервиса</small>
           </div>
-          <div class="text-center">0%</div>
+          <div class="text-center">
+            <i class="fas fa-spinner fa-spin"></i>
+          </div>
           <div class="btn">
-            <button>Запустить</button>
+            <button disabled>Запустить</button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- <div class="container">
+      <div class="tabs">
+        <input type="radio" name="tab-btn" id="tab-btn-1" checked>
+        <label for="tab-btn-1">ЗКГУ</label>
+        <input type="radio" name="tab-btn" id="tab-btn-2">
+        <label for="tab-btn-2">БГУ</label>
+        <input type="radio" name="tab-btn" id="tab-btn-3">
+        <label for="tab-btn-3">Кадры 2.0</label>
+        <div id="content-1">
+          Содержимое 1...
+        </div>
+        <div id="content-2">
+          Содержимое 2...
+        </div>
+        <div id="content-3">
+          Содержимое 3...
+        </div>
+      </div>
+      </div>
+    </div> -->
+
+    <div id="urlInputDiv" style="display:none;">
+      <h2>Enter URL:</h2>
+      <input type="text" id="urlInput"><br><br>
+    </div>
   </body>
+  <script>
+      let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+
+      tg.expand(); //расширяем на все окно  
+
+      tg.MainButton.setText("Запустить"); //изменяем текст кнопки иначе
+      tg.MainButton.textColor = "#ffffff"; //изменяем цвет текста кнопки
+      tg.MainButton.color = "#228B22"; //изменяем цвет бэкграунда кнопки
+
+      let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
+
+        btn.addEventListener('click', function(){ //вешаем событие на нажатие html-кнопки
+          if (tg.MainButton.isVisible){ //если кнопка показана 
+            tg.MainButton.hide() //скрываем кнопку 
+          }
+          else{ //иначе
+            document.getElementById("urlInputDiv").style.display = "block";
+            tg.MainButton.show() //показываем 
+          }
+      });
+
+      Telegram.WebApp.onEvent('mainButtonClicked', function() {
+        var url = document.getElementById("urlInput").value;
+        document.getElementById("urlInputDiv").style.display = "none";
+          tg.sendData("ТЕкст урла"); 
+const data = url;
+
+fetch('/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data)
+}).then(response => {
+  if (response.ok) {
+    // Делаем что-то после успешной отправки данных
+    console.log('Data sent successfully');
+  } else {
+    // Обрабатываем ошибку отправки данных
+    console.error('Failed to send data:', response.statusText);
+  }
+}).catch(error => {
+  // Обрабатываем ошибку отправки данных
+  console.error('Failed to send data:', error);
+});
+      //при клике на основную кнопку отправляем данные в строковом виде
+   });
+  </script>
 </html>
