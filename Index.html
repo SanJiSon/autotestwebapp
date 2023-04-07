@@ -9,8 +9,8 @@
       }
 
       .container {
-        margin: 20px;
-        padding: 20px;
+        margin: 10px 0;
+        padding: 20px 20px 10px;
         border-radius: 12px;
         box-shadow:
           0 6px 38px #20202012,
@@ -19,41 +19,39 @@
           0 1.0944px 4.0736px #20202008,
           0 .2448px 1.7632px #20202005;
       }
-      
-      table {
-        width: 100%;
-      }
 
-      caption {
-        margin-bottom: 20px;
-        font-family: "Public Sans", sans-serif;
-        font-weight: 600;
+      .title {
+        margin-bottom: 16px;
         color: #6b7280;
+        font-family: "Public Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
         letter-spacing: .5px;
       }
-      
-      th, td {
-        text-align: left;
-        padding: 6px;
-        border-bottom: 1px solid #e5e5e5;
-      }
 
-      th {
+      .header-content {
+        display: grid;
+        grid-template-columns: 1fr 100px 180px;
+        gap: 12px;
+        align-items: center;
+        padding-bottom: 12px;
+        color: #6b7280;
+        border-bottom: 1px solid #e5e5e5;
         font-family: "Public Sans", sans-serif;
         font-weight: 600;
         font-size: 14px;
-        text-align: left;
-        color: #6b7280;
-        padding-bottom: 16px;
       }
 
-      td {
-        max-width: 300px;
-
+      .conf-item {
+        display: grid;
+        grid-template-columns: 44px 1fr 100px 180px;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 0;
       }
-      
-      .icon {
-        width: 44px;
+
+      .conf-item:not(:last-child) {
+        border-bottom: 1px solid #e5e5e5;
       }
 
       img {
@@ -63,82 +61,120 @@
       }
       
       small {
-        font-size: 14px;
         color: #999;
+        font-size: 14px;
       }
 
-      .cell-btn {
-        width: 100px;
+      .text-center {
+        text-align: center;
       }
       
-      .btn {
+      button {
         width: 100%;
+        padding: 8px 16px;
         background-color: #4CAF50;
         color: white;
-        padding: 8px 16px;
         border: none;
         border-radius: 4px;
         cursor: pointer;
       }
       
-      .btn:hover {
+      button:hover {
         background-color: #3e8e41;
       }
-      
+
+      /* @media screen and (min-width: 768px) {
+        .title {
+          font-size: 20px;
+        }
+
+        .header-content {
+          grid-template-columns: 60px 1fr 100px 180px;
+          gap: 20px;
+          padding-bottom: 12px;
+          font-size: 20px;
+        }
+
+        .conf-item {
+          display: grid;
+          grid-template-columns: 60px 1fr 100px 180px;
+          gap: 20px;
+          padding: 20px 0;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      } */
     </style>
   </head>
   
   <body>
-    <div class="container">  
-      <table>
-        <colgroup>
-          <col width="6%">
-          <col width="20%">
-          <col width="10%">
-          <col width="10%">
-        </colgroup>
-        <caption >Список конфигураций</caption>
-        <thead>    
-          <tr>
-            <th></th>
-            <th>Конфигурация</th>
-            <th>Прогресс</th>
-            <th>Действия</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="icon"><img src="src/Зарплата.png"> </td>
-            <td>ЗКГУ<br><small>Зарплата и Кадры</small></td>
-            <td>40%</td>
-            <td class="cell-btn"><button class="btn">Запустить</button></td>
-          </tr>
-          <tr>
-            <td class="icon"><img src="src/Бухгалтерия .png"></td>
-            <td>БГУ<br><small>Бухгалтерия гос. учреждения</small></td>
-            <td>20%</td>
-            <td class="cell-btn"><button class="btn">Запустить</button></td>
-          </tr>
-          <tr>
-            <td class="icon"><img src="src/Кадры.png"></td>
-            <td>Кадры 2.0<br><small>Управление кадрами</small></td>
-            <td>70%</td>
-            <td class="cell-btn"><button class="btn">Запустить</button></td>
-          </tr>
-          <tr>
-            <td class="icon"><img src="src/Аптека.png"></td>
-            <td>Аптека<br><small>Управление аптекой</small></td>
-            <td>90%</td>
-            <td class="cell-btn"><button class="btn">Запустить</button></td>
-          </tr>
-          <tr>
-            <td class="icon"><img src="src/Сервис.png"></td>
-            <td>МС<br><small>Менеджер сервиса</small></td>
-            <td>0%</td>
-            <td class="cell-btn"><button class="btn">Запустить</button></td>
-          </tr>    
-        </tbody>
-      </table>
+    <div class="container">
+      <div class="title">Список конфигураций</div>
+      <div class="content">
+        <div class="header-content">
+          <div>Конфигурация</div>
+          <div class="text-center">Прогресс</div>
+          <div class="text-center">Действия</div>
+        </div>
+        <div class="conf-item">
+          <img class="icon" src="src/Зарплата.png"></img>
+          <div>
+            ЗКГУ<br>
+            <small>Зарплата и Кадры</small>
+          </div>
+          <div class="text-center">40%</div>
+          <div class="btn">
+            <button>Запустить</button>
+          </div>
+        </div>
+        <div class="conf-item">
+          <img class="icon" src="src/Бухгалтерия .png"></img>
+          <div>
+            БГУ<br>
+            <small>Бухгалтерия гос. учреждения</small>
+          </div>
+          <div class="text-center">20%</div>
+          <div class="btn">
+            <button>Запустить</button>
+          </div>
+        </div>
+        <div class="conf-item">
+          <img class="icon" src="src/Кадры.png"></img>
+          <div>
+            Кадры 2.0<br>
+            <small>Управление кадрами</small>
+          </div>
+          <div class="text-center">70%</div>
+          <div class="btn">
+            <button>Запустить</button>
+          </div>
+        </div>
+        <div class="conf-item">
+          <img class="icon" src="src/Аптека.png"></img>
+          <div>
+            Аптека<br>
+            <small>Управление аптекой</small>
+          </div>
+          <div class="text-center">90%</div>
+          <div class="btn">
+            <button>Запустить</button>
+          </div>
+        </div>
+        <div class="conf-item">
+          <img class="icon" src="src/Сервис.png"></img>
+          <div>
+            МС<br>
+            <small>Менеджер сервиса</small>
+          </div>
+          <div class="text-center">0%</div>
+          <div class="btn">
+            <button>Запустить</button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
