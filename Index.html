@@ -9,10 +9,15 @@
       }
 
       .container {
-        box-shadow: 0p 1px 4px 10px rgba(0, 0, 0, 0.1);
-        width: 630px;
-        margin: 0 auto;
+        margin: 20px;
         padding: 20px;
+        border-radius: 12px;
+        box-shadow:
+          0 6px 38px #20202012,
+          0 5.2992px 19.8208px #2020200d,
+          0 2.7216px 9.3024px #2020200a,
+          0 1.0944px 4.0736px #20202008,
+          0 .2448px 1.7632px #20202005;
       }
       
       table {
@@ -41,18 +46,28 @@
         color: #6b7280;
         padding-bottom: 16px;
       }
+      
+      .icon {
+        width: 44px;
+      }
 
       img {
-        width: auto;
+        width: 37px;
         height: 32px;
+        object-fit: cover;
       }
       
       small {
         font-size: 14px;
         color: #999;
       }
+
+      .cell-btn {
+        width: 100px;
+      }
       
       .btn {
+        width: 100%;
         background-color: #4CAF50;
         color: white;
         padding: 8px 16px;
@@ -82,34 +97,34 @@
         </thead>
         <tbody>
           <tr>
-            <td><img src="src/Зарплата.png" class="icon"> </td>
+            <td class="icon"><img src="src/Зарплата.png"> </td>
             <td>ЗКГУ<br><small>Зарплата и Кадры</small></td>
             <td>40%</td>
-            <td><button class="btn btn-primary">Запустить</button></td>
+            <td class="cell-btn"><button class="btn">Запустить</button></td>
           </tr>
           <tr>
-            <td><img src="src/Бухгалтерия .png" class="icon"></td>
+            <td class="icon"><img src="src/Бухгалтерия .png"></td>
             <td>БГУ<br><small>Бухгалтерия гос. учреждения</small></td>
             <td>20%</td>
-            <td><button class="btn btn-secondary">Запустить</button></td>
+            <td class="cell-btn"><button class="btn">Запустить</button></td>
           </tr>
           <tr>
-            <td><img src="src/Кадры.png" class="icon"></td>
+            <td class="icon"><img src="src/Кадры.png"></td>
             <td>Кадры 2.0<br><small>Управление кадрами</small></td>
             <td>70%</td>
-            <td><button class="btn btn-success">Запустить</button></td>
+            <td class="cell-btn"><button class="btn">Запустить</button></td>
           </tr>
           <tr>
-            <td><img src="src/Аптека.png" class="icon"></td>
+            <td class="icon"><img src="src/Аптека.png"></td>
             <td>Аптека<br><small>Управление аптекой</small></td>
             <td>90%</td>
-            <td><button class="btn btn-danger">Запустить</button></td>
+            <td class="cell-btn"><button class="btn">Запустить</button></td>
           </tr>
           <tr>
-            <td><img src="src/Сервис.png" class="icon"></td>
+            <td class="icon"><img src="src/Сервис.png"></td>
             <td>МС<br><small>Менеджер сервиса</small></td>
             <td>0%</td>
-            <td><button class="btn btn-info">Запустить</button></td>
+            <td class="cell-btn"><button class="btn">Запустить</button></td>
           </tr>    
         </tbody>
       </table>
