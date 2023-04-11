@@ -1,234 +1,234 @@
 <!DOCTYPE html>
 <html class="light" style="--tg-viewport-height:100vh; --tg-viewport-stable-height:100vh;">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, 
-                                   user-scalable=no"shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
-    <meta name="format-detection" content="telephone=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="MobileOptimized" content="176">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="robots" content="noindex, nofollow">
-    <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-      function setThemeClass() {
-        document.documentElement.className = Telegram.WebApp.colorScheme;
-      }
-      Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-      setThemeClass();
-    </script>
-    <title>Пример</title>
-    <style>
-      body {
-        font-family: Public Sans, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
-      }
 
-      .container {
-        margin: 10px 0;
-        padding: 20px 20px 8px;
-        border-radius: 12px;
-        box-shadow:
-          0 6px 38px #20202012,
-          0 5.2992px 19.8208px #2020200d,
-          0 2.7216px 9.3024px #2020200a,
-          0 1.0944px 4.0736px #20202008,
-          0 .2448px 1.7632px #20202005;
-        user-select: none;
-      }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, 
+                                   user-scalable=no" shrink-to-fit=no, user-scalable=no, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="MobileOptimized" content="176">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    function setThemeClass() {
+      document.documentElement.className = Telegram.WebApp.colorScheme;
+    }
+    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+    setThemeClass();
+  </script>
+  <title>Пример</title>
+  <style>
+    body {
+      font-family: Public Sans, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
+    }
 
-      .title {
-        margin-bottom: 12px;
-        color: #6b7280;
-        font-family: "Public Sans", sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: .4px;
-      }
+    .container {
+      margin: 10px 0;
+      padding: 20px 20px 8px;
+      border-radius: 12px;
+      box-shadow:
+        0 6px 38px #20202012,
+        0 5.2992px 19.8208px #2020200d,
+        0 2.7216px 9.3024px #2020200a,
+        0 1.0944px 4.0736px #20202008,
+        0 .2448px 1.7632px #20202005;
+      user-select: none;
+    }
 
-      .conf-item {
-        display: grid;
-        grid-template-columns: 1fr 8fr 2fr 3fr;
-        gap: 16px;
-        align-items: center;
-        padding: 12px 0;
-        border-top: 1px solid #e5e5e5;
-      }
+    .title {
+      margin-bottom: 12px;
+      color: #6b7280;
+      font-family: "Public Sans", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: .4px;
+    }
 
-      img {
-        width: 44px;
-        height: 44px;
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-      }
-      
-      small {
-        color: #999;
-        font-size: 14px;
-      }
+    .conf-item {
+      display: grid;
+      grid-template-columns: 1fr 8fr 2fr 3fr;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid #e5e5e5;
+    }
 
-      .text-center {
-        text-align: center;
-      }
+    img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    }
 
-      i {
-        font-size: 20px;
-      }
+    small {
+      color: #999;
+      font-size: 14px;
+    }
 
-      .fa-cloud {
-        color: #dfdcdc;
-      }
+    .text-center {
+      text-align: center;
+    }
 
-      .fa-circle-check {
-        color: #4CBB17;
-      }
-      
-      button {
-        width: 100%;
-        padding: 8px 12px;
-        background-color:  #228B22;
-        color: white;
-        border: 1px solid #228B22;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-      }
-      
-      button:hover {
-        background-color: #006633;
-      }
+    i {
+      font-size: 20px;
+    }
 
-      button:disabled {
-        background-color: #f8f8f8;
-        color: #b6b6b6;
-        border-color: #f8f8f8;
-        cursor: not-allowed;
-      }
+    .fa-cloud {
+      color: #dfdcdc;
+    }
 
-      .tabs {
-        font-size: 0;
-      }
+    .fa-circle-check {
+      color: #4CBB17;
+    }
 
-      .tabs > input[type="radio"] {
-        display: none;
-      }
+    button {
+      width: 100%;
+      padding: 8px 12px;
+      background-color: #228B22;
+      color: white;
+      border: 1px solid #228B22;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
 
-      .tabs > div {
-        display: none;
-        border: 1px solid #e0e0e0;
-        padding: 10px 15px;
-        font-size: 16px;
-      }
+    button:hover {
+      background-color: #006633;
+    }
 
-      #tab-btn-1:checked ~ #content-1,
-      #tab-btn-2:checked ~ #content-2,
-      #tab-btn-3:checked ~ #content-3 {
-        border-radius: 10px;
-        display: block;
-      }
+    button:disabled {
+      background-color: #f8f8f8;
+      color: #b6b6b6;
+      border-color: #f8f8f8;
+      cursor: not-allowed;
+    }
 
-      .tabs > label {
-        display: inline-block;
-        text-align: center;
-        vertical-align: middle;
-        user-select: none;
-        background-color: #f5f5f5;
-        border: 1px solid #e0e0e0;
-        padding: 2px 8px;
-        font-size: 16px;
-        line-height: 1.5;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-        cursor: pointer;
-        position: relative;
-        top: 1px;
-      }
+    .tabs {
+      font-size: 0;
+    }
 
-      .tabs > label:not(:first-of-type) {
-        border-left: none;
-      }
+    .tabs>input[type="radio"] {
+      display: none;
+    }
 
-      .tabs > input[type="radio"]:checked + label {
-        background-color: #fff;
-        border-bottom: 1px solid #fff;
-      }
-      
-    </style>
-  </head>
-  
-  <body>
-    <div class="container">
-      <div class="title">Список конфигураций</div>
-      <div class="content">
-        <div class="conf-item">
-          <img src="./src/Зарплата.png"></img>
-          <div>
-            ЗКГУ<br>
-            <small>Зарплата и Кадры</small>
-          </div>
-          <div class="text-center">
-            <i class="fa-solid fa-cloud"></i>
-          </div>
-          <div id="btn" class="btn">
-            <button>Запустить</button>
-          </div>
+    .tabs>div {
+      display: none;
+      border: 1px solid #e0e0e0;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+
+    #tab-btn-1:checked~#content-1,
+    #tab-btn-2:checked~#content-2,
+    #tab-btn-3:checked~#content-3 {
+      border-radius: 10px;
+      display: block;
+    }
+
+    .tabs>label {
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      background-color: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      padding: 2px 8px;
+      font-size: 16px;
+      line-height: 1.5;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+      cursor: pointer;
+      position: relative;
+      top: 1px;
+    }
+
+    .tabs>label:not(:first-of-type) {
+      border-left: none;
+    }
+
+    .tabs>input[type="radio"]:checked+label {
+      background-color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Список конфигураций</div>
+    <div class="content">
+      <div class="conf-item">
+        <img src="./src/Зарплата.png"></img>
+        <div>
+          ЗКГУ<br>
+          <small>Зарплата и Кадры</small>
         </div>
-        <div class="conf-item">
-          <img src="./src/Бухгалтерия.png"></img>
-          <div>
-            БГУ<br>
-            <small>Бухгалтерия гос. учреждения</small>
-          </div>
-          <div class="text-center">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-          <div class="btn">
-            <button>Запустить</button>
-          </div>
+        <div class="text-center">
+          <i class="fa-solid fa-cloud"></i>
         </div>
-        <div class="conf-item">
-          <img src="./src/Кадры.png"></img>
-          <div>
-            Кадры 2.0<br>
-            <small>Управление кадрами</small>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-spinner fa-spin"></i>
-          </div>
-          <div class="btn">
-            <button>Запустить</button>
-          </div>
+        <div id="btn" class="btn">
+          <button>Запустить</button>
         </div>
-        <div class="conf-item">
-          <img src="./src/Аптека.png"></img>
-          <div>
-            Аптека<br>
-            <small>Управление аптекой</small>
-          </div>
-          <div class="text-center">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-          <div class="btn">
-            <button>Запустить</button>
-          </div>
+      </div>
+      <div class="conf-item">
+        <img src="./src/Бухгалтерия.png"></img>
+        <div>
+          БГУ<br>
+          <small>Бухгалтерия гос. учреждения</small>
         </div>
-        <div class="conf-item">
-          <img src="./src/Сервис.png"></img>
-          <div>
-            МС<br>
-            <small>Менеджер сервиса</small>
-          </div>
-          <div class="text-center">
-            <i class="fas fa-spinner fa-spin"></i>
-          </div>
-          <div class="btn">
-            <button disabled>Запустить</button>
-          </div>
+        <div class="text-center">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="btn">
+          <button>Запустить</button>
+        </div>
+      </div>
+      <div class="conf-item">
+        <img src="./src/Кадры.png"></img>
+        <div>
+          Кадры 2.0<br>
+          <small>Управление кадрами</small>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <div class="btn">
+          <button>Запустить</button>
+        </div>
+      </div>
+      <div class="conf-item">
+        <img src="./src/Аптека.png"></img>
+        <div>
+          Аптека<br>
+          <small>Управление аптекой</small>
+        </div>
+        <div class="text-center">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="btn">
+          <button>Запустить</button>
+        </div>
+      </div>
+      <div class="conf-item">
+        <img src="./src/Сервис.png"></img>
+        <div>
+          МС<br>
+          <small>Менеджер сервиса</small>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <div class="btn">
+          <button disabled>Запустить</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- <div class="container">
+  <!-- <div class="container">
       <div class="tabs">
         <input type="radio" name="tab-btn" id="tab-btn-1" checked>
         <label for="tab-btn-1">ЗКГУ</label>
@@ -249,57 +249,59 @@
       </div>
     </div> -->
 
-    <div id="urlInputDiv" style="display:none;">
-      <h2>Enter URL:</h2>
-      <input type="text" id="urlInput"><br><br>
-    </div>
-  </body>
-  <script>
-      let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+  <div id="urlInputDiv" style="display:none;">
+    <h2>Enter URL:</h2>
+    <input type="text" id="urlInput"><br><br>
+  </div>
+</body>
+<script>
+  let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
-      tg.expand(); //расширяем на все окно  
+  tg.expand(); //расширяем на все окно  
 
-      tg.MainButton.setText("Запустить"); //изменяем текст кнопки иначе
-      tg.MainButton.textColor = "#ffffff"; //изменяем цвет текста кнопки
-      tg.MainButton.color = "#228B22"; //изменяем цвет бэкграунда кнопки
-     
-      let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
+  tg.MainButton.setText("Запустить"); //изменяем текст кнопки иначе
+  tg.MainButton.textColor = "#ffffff"; //изменяем цвет текста кнопки
+  tg.MainButton.color = "#228B22"; //изменяем цвет бэкграунда кнопки
 
-        btn.addEventListener('click', function(){ //вешаем событие на нажатие html-кнопки
-          if (tg.MainButton.isVisible){ //если кнопка показана 
-            tg.MainButton.hide() //скрываем кнопку 
-          }
-          else{ //иначе
-            document.getElementById("urlInputDiv").style.display = "block";
-            tg.MainButton.show() //показываем 
-          }
-      });
+  let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
 
-      Telegram.WebApp.onEvent('mainButtonClicked', function() {
-        var url = document.getElementById("urlInput").value;
-        document.getElementById("urlInputDiv").style.display = "none";
-          tg.sendData("ТЕкст урла"); 
-const data = url;
+  btn.addEventListener('click', function () { //вешаем событие на нажатие html-кнопки
+    if (tg.MainButton.isVisible) { //если кнопка показана 
+      tg.MainButton.hide() //скрываем кнопку 
+    }
+    else { //иначе
+      document.getElementById("urlInputDiv").style.display = "block";
+      tg.MainButton.show() //показываем 
+    }
+  });
 
-fetch('/data', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-}).then(response => {
-  if (response.ok) {
-    // Делаем что-то после успешной отправки данных
-    console.log('Data sent successfully');
-  } else {
-    // Обрабатываем ошибку отправки данных
-    console.error('Failed to send data:', response.statusText);
-  }
-}).catch(error => {
-  // Обрабатываем ошибку отправки данных
-  console.error('Failed to send data:', error);
-});
-      //при клике на основную кнопку отправляем данные в строковом виде
-   });
-  </script>
+  Telegram.WebApp.onEvent('mainButtonClicked', function () {
+    var url = document.getElementById("urlInput").value;
+    document.getElementById("urlInputDiv").style.display = "none";
+    alert(tg.initData());
+    tg.sendData("ТЕкст урла");
+    const data = url;
+
+    fetch('/data', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => {
+      if (response.ok) {
+        // Делаем что-то после успешной отправки данных
+        console.log('Data sent successfully');
+      } else {
+        // Обрабатываем ошибку отправки данных
+        console.error('Failed to send data:', response.statusText);
+      }
+    }).catch(error => {
+      // Обрабатываем ошибку отправки данных
+      console.error('Failed to send data:', error);
+    });
+    //при клике на основную кнопку отправляем данные в строковом виде
+  });
+</script>
+
 </html>
