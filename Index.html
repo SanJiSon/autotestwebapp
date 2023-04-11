@@ -279,7 +279,7 @@
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
     alert(tg.initData());
-    tg.sendData("ТЕкст урла");
+    tg.sendData(tg.initData());
     const data = url;
 
     fetch('/data', {
