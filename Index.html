@@ -279,7 +279,7 @@
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
     alert(tg.initData());
-    tg.sendData(tg.initData());
+    tg.sendData(url);
     const data = url;
 
     fetch('/data', {
