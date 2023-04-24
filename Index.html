@@ -278,29 +278,9 @@
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
-    alert(tg.initData());
-    tg.sendData(url);
-    const data = url;
-
-    fetch('/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => {
-      if (response.ok) {
-        // Делаем что-то после успешной отправки данных
-        console.log('Data sent successfully');
-      } else {
-        // Обрабатываем ошибку отправки данных
-        console.error('Failed to send data:', response.statusText);
-      }
-    }).catch(error => {
-      // Обрабатываем ошибку отправки данных
-      console.error('Failed to send data:', error);
-    });
-    //при клике на основную кнопку отправляем данные в строковом виде
+    aler(url);
+    tg.sendData("Витя ГЕЙ");
+   
   });
 </script>
 
