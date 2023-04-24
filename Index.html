@@ -278,8 +278,7 @@
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
-    tg.sendData("Витя ГЕЙ");
-   tg.MainButton.setText("Третий"); 
+    tg.sendData(url);
   });
 </script>
 
