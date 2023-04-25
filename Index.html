@@ -279,6 +279,7 @@
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
+<<<<<<< HEAD
 
       // Создаем объект, который хотим отправить в формате JSON
   var data = {
@@ -292,6 +293,9 @@
   // Отправляем данные в формате строки JSON
   tg.sendData(jsonData);
 
+=======
+    tg.sendData(url);
+>>>>>>> 879c06feed2394b6d6ef593ee4f84f1c4e2a4e4a
   });
 
     let clickedButton = '';
