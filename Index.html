@@ -263,16 +263,19 @@
   tg.MainButton.textColor = "#ffffff"; //изменяем цвет текста кнопки
   tg.MainButton.color = "#228B22"; //изменяем цвет бэкграунда кнопки
 
-  let btn = document.getElementById("btn"); //получаем кнопку скрыть/показать 
 
-  btn.addEventListener('click', function () { //вешаем событие на нажатие html-кнопки
-    if (tg.MainButton.isVisible) { //если кнопка показана 
-      tg.MainButton.hide() //скрываем кнопку 
-    }
-    else { //иначе
-      document.getElementById("urlInputDiv").style.display = "block";
-      tg.MainButton.show() //показываем 
-    }
+  let btns = document.querySelectorAll(".btn button");
+
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function (event) {
+      if (tg.MainButton.isVisible) { //если кнопка показана 
+        tg.MainButton.hide() //скрываем кнопку 
+      }
+      else { //иначе
+        document.getElementById("urlInputDiv").style.display = "block";
+        tg.MainButton.show() //показываем 
+      }
+    });
   });
 
 
@@ -280,25 +283,25 @@
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
 
-      // Создаем объект, который хотим отправить в формате JSON
-  var data = {
-    url: url,
-    conf: clickedButton
-  };
-  
-  // Преобразуем объект в строку JSON
-  var jsonData = JSON.stringify(data);
-  
-  // Отправляем данные в формате строки JSON
-  tg.sendData(jsonData);
+    // Создаем объект, который хотим отправить в формате JSON
+    var data = {
+      url: url,
+      conf: clickedButton
+    };
+
+    // Преобразуем объект в строку JSON
+    var jsonData = JSON.stringify(data);
+
+    // Отправляем данные в формате строки JSON
+    tg.sendData(jsonData);
 
   });
 
-    let clickedButton = '';
+  let clickedButton = '';
 
-    function setClickedButton(name) {
-      clickedButton = name;
-    }
+  function setClickedButton(name) {
+    clickedButton = name;
+  }
 
 
 </script>
