@@ -170,7 +170,7 @@
           <i class="fa-solid fa-cloud"></i>
         </div>
         <div id="btn" class="btn">
-          <button>Запустить</button>
+          <button onclick="setClickedButton('ZKGU')">Запустить</button>
         </div>
       </div>
       <div class="conf-item">
@@ -183,7 +183,7 @@
           <i class="fa-solid fa-circle-check"></i>
         </div>
         <div class="btn">
-          <button>Запустить</button>
+          <button onclick="setClickedButton('BGU')">Запустить</button>
         </div>
       </div>
       <div class="conf-item">
@@ -196,7 +196,7 @@
           <i class="fas fa-spinner fa-spin"></i>
         </div>
         <div class="btn">
-          <button>Запустить</button>
+          <button onclick="setClickedButton('Kadry')">Запустить</button>
         </div>
       </div>
       <div class="conf-item">
@@ -209,7 +209,7 @@
           <i class="fa-solid fa-circle-check"></i>
         </div>
         <div class="btn">
-          <button>Запустить</button>
+          <button onclick="setClickedButton('Apteka')">Запустить</button>
         </div>
       </div>
       <div class="conf-item">
@@ -222,7 +222,7 @@
           <i class="fas fa-spinner fa-spin"></i>
         </div>
         <div class="btn">
-          <button disabled>Запустить</button>
+          <button onclick="setClickedButton('MS')">Запустить</button>
         </div>
       </div>
     </div>
@@ -275,33 +275,32 @@
     }
   });
 
+
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
     document.getElementById("urlInputDiv").style.display = "none";
-    alert(tg.initData());
-    tg.sendData(tg.initData());
-    const data = url;
 
-    fetch('/data', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => {
-      if (response.ok) {
-        // Делаем что-то после успешной отправки данных
-        console.log('Data sent successfully');
-      } else {
-        // Обрабатываем ошибку отправки данных
-        console.error('Failed to send data:', response.statusText);
-      }
-    }).catch(error => {
-      // Обрабатываем ошибку отправки данных
-      console.error('Failed to send data:', error);
-    });
-    //при клике на основную кнопку отправляем данные в строковом виде
+      // Создаем объект, который хотим отправить в формате JSON
+  var data = {
+    url: url,
+    conf: clickedButton
+  };
+  
+  // Преобразуем объект в строку JSON
+  var jsonData = JSON.stringify(data);
+  
+  // Отправляем данные в формате строки JSON
+  tg.sendData(jsonData);
+
   });
+
+    let clickedButton = '';
+
+    function setClickedButton(name) {
+      clickedButton = name;
+    }
+
+
 </script>
 
 </html>
