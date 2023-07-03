@@ -38,6 +38,20 @@
       user-select: none;
     }
 
+    
+    .container2 {
+      margin: 10px 0;
+      padding: 20px 20px 8px;
+      border-radius: 12px;
+      box-shadow:
+        0 6px 38px #20202012,
+        0 5.2992px 19.8208px #2020200d,
+        0 2.7216px 9.3024px #2020200a,
+        0 1.0944px 4.0736px #20202008,
+        0 .2448px 1.7632px #20202005;
+      user-select: none;
+    }
+
     .title {
       margin-bottom: 12px;
       color: #6b7280;
@@ -50,6 +64,15 @@
     .conf-item {
       display: grid;
       grid-template-columns: 1fr 8fr 2fr 3fr;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .parameters-item {
+      display: grid;
+      grid-template-columns: 2fr 8fr;
       gap: 16px;
       align-items: center;
       padding: 12px 0;
@@ -157,7 +180,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div id="configList" class="container">
     <div class="title">Список конфигураций</div>
     <div class="content">
       <div class="conf-item">
@@ -249,10 +272,101 @@
       </div>
     </div> -->
 
-  <div id="urlInputDiv" style="display:none;">
-    <h2>Enter URL:</h2>
-    <input type="text" id="urlInput"><br><br>
-  </div>
+    <div id="paramList" class="container2" style="display:none;">
+      <div class="title">Параметры теста</div>
+      <div class="content">
+        <div class="parameters-item">
+          <div>
+            Cписок нод<br>
+            <small>Нода дженкинса, на которой будет запущен пайплайн</small>
+          </div>
+          <div class="seldiv">
+            <select id="selectvalue"> <!-- Позже добавить автополучение списка нод (сборщики)-->
+              <option>m1.ec.n.service.preprod-balance.mos.local</option>
+              <option>m2.ec.n.service.preprod-balance.mos.local</option>
+              <option>m3.ec.n.service.preprod-balance.mos.local</option>
+              <option>m4.ec.n.service.preprod-balance.mos.local</option>
+              <option>m5.ec.n.service.preprod-balance.mos.local</option>
+              <option>m6.ec.n.service.preprod-balance.mos.local</option>
+              <option>m7.ec.n.service.preprod-balance.mos.local</option>
+              <option>m8.ec.n.service.preprod-balance.mos.local</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="parameters-item">
+          <div>
+            restore<br>
+            <small>Список баз которые необходимо обновить актуальной версией прод. Например embgu6,embgu5</small>
+          </div>
+          <div class="restoreDiv">
+            <input type="text" id="restore">
+          </div>
+        </div>
+
+        <div class="parameters-item">
+          <div>
+            reset passwords<br>
+            <small>Список баз в которых необходимо сбросить пароль. Например embgu6,embgu5</small>
+          </div>
+          <div class="resetDiv">
+            <input type="text" id="reset">
+          </div>
+        </div>
+
+        <div class="parameters-item">
+          <div>
+            snapshot<br>
+            <small>Список баз для которых необходимо выполнить snapshot. Например embgu6,embgu5</small>
+          </div>
+          <div class="snapshotDiv">
+            <input type="text" id="snapshot">
+          </div>
+        </div>
+
+        <div class="parameters-item">
+          <div>
+            rollback<br>
+            <small>Список баз для которых необходимо выполнить откат к snapshot. Например embgu6,embgu5</small>
+          </div>
+          <div class="rollbackDiv">
+            <input type="text" id="rollback">
+          </div>
+        </div>
+
+        <div class="parameters-item">
+          <div>
+            update bases<br>
+            <small>Список баз для которых необходимо выполнить обновление конфигурации. Например embgu6,embgu5</small>
+          </div>
+          <div class="updatekDiv">
+            <input type="text" id="update">
+          </div>
+        </div>
+            
+        <div class="parameters-item">
+          <div>
+            CF path<br>
+            <small>Путь, имя файла в репозитории или интернет ссылка к файлу обновления конфигурации(*.cf)</small>
+          </div>
+          <div class="cfpathkDiv">
+            <input type="text" id="cfpath">
+          </div>
+        </div>
+          
+        <div class="parameters-item">
+          <div>
+            test params<br>
+            <small>Параметры smoke - тестирования в формате json. Например:
+              [{"ibname":"emzkoo_3_4"}]</small>
+          </div>
+          <div class="testparamsDiv">
+            <input type="text" id="testparams">
+          </div>
+        </div>               
+    </div>
+
+  
 </body>
 <script>
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
@@ -272,7 +386,8 @@
         tg.MainButton.hide() //скрываем кнопку 
       }
       else { //иначе
-        document.getElementById("urlInputDiv").style.display = "block";
+        document.getElementById("configList").style.display = "none";
+        document.getElementById("paramList").style.display = "block";
         tg.MainButton.show() //показываем 
       }
     });
