@@ -72,7 +72,7 @@
 
     .parameters-item {
       display: grid;
-      grid-template-columns: 2fr 8fr;
+      grid-template-columns: 3fr 7fr;
       gap: 16px;
       align-items: center;
       padding: 12px 0;
@@ -277,18 +277,18 @@
       <div class="content">
         <div class="parameters-item">
           <div>
-            Cписок нод<br>
+            node<br>
             </div>
           <div class="seldiv">
             <select id="selectvalue"> <!-- Позже добавить автополучение списка нод (сборщики)-->
-              <option>m1.ec.n.service</option>
-              <option>m2.ec.n.service</option>
-              <option>m3.ec.n.service</option>
-              <option>m4.ec.n.service</option>
-              <option>m5.ec.n.service</option>
-              <option>m6.ec.n.service</option>
-              <option>m7.ec.n.service</option>
-              <option>m8.ec.n.service</option>
+              <option>m1.n.service.preprod.local</option>
+              <option>m2.n.service.preprod.local</option>
+              <option>m3.n.service.preprod.local</option>
+              <option>m4.n.service.preprod.local</option>
+              <option>m5.n.service.preprod.local</option>
+              <option>m6.n.service.preprod.local</option>
+              <option>m7.n.service.preprod.local</option>
+              <option>m8.n.service.preprod.local</option>
             </select>
           </div>
         </div>
@@ -340,7 +340,7 @@
             
         <div class="parameters-item">
           <div>
-            CF path<br>
+             cf path<br>
           </div>
           <div class="cfpathkDiv">
             <input type="text" id="cfpath">
@@ -357,7 +357,7 @@
         </div>               
     </div>
 
-  
+    
 </body>
 <script>
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
