@@ -12,6 +12,7 @@
   <meta name="robots" content="noindex, nofollow">
   <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -356,8 +357,14 @@
           </div>
         </div>               
     </div>
+    <div id="btn" class="btn">
+      <button onclick="setClickedHui()">Запустить</button>
+    </div>
+    <div id="result" style="width:500px; height:500px"> 
+    </div>
 
 </body>
+
 <script>
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
@@ -408,6 +415,17 @@
     clickedButton = name;
   }
 
+  async function setClickedHui() {
+    await fetch('https://preprod-balance.mos.ru/jenkins/view/BGU/api/json', {
+      mode:'cors',
+      method:'GET', 
+      headers: {
+        'Authorization': 'Basic ' + btoa('viewer:8QXWaVErvD7zdITwFzAK')
+      }
+    }) 
+    .then(response => response.json())
+    .then(data => document.querySelector("#result").innerHTML= data)  
+  }
 
 </script>
 
