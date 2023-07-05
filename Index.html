@@ -418,10 +418,11 @@
 
   async function setClickedHui() {
     await fetch('https://preprod-balance.mos.ru/jenkins/view/BGU/api/json', {
-      mode:'no-cors',
-      method:'GET', 
       headers: {
-        'Authorization': 'Basic ' + btoa('viewer:8QXWaVErvD7zdITwFzAK')
+        'Authorization': 'Basic ' + btoa('viewer:8QXWaVErvD7zdITwFzAK'),
+        'Content-Type': 'application/json',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
       }
     }) 
     .then(response => response.json())
