@@ -360,9 +360,17 @@
     <div id="btn2" class="btn2">
       <button onclick="setClickedHui()">TEST</button>
     </div>
-    ТЕСТ ПОЛЕ<br>
-    <div id="result" style="width:500px; height:500px"> 
-    </div>
+
+    <div class="container-fluid">
+      <h1>Convert JSON data to Bootstrap Table
+      </h1>    
+      <button onclick="convertJsonToBootstrapTable()">Convert JSON to Bootstrap Table
+      </button>	
+      <br>
+      <br>
+      <table id="display_json_data" class="table table-bordered table-striped">
+      </table>
+    </div> 
 
 </body>
 
@@ -416,19 +424,52 @@
     clickedButton = name;
   }
 
+  let employeeJson = '';
+
   async function setClickedHui() {
-    await fetch('https://preprod-balance.mos.ru/jenkins/view/BGU/api/json', {
-      headers: {
-        'Authorization': 'Basic ' + btoa('viewer:8QXWaVErvD7zdITwFzAK'),
-        'Content-Type': 'application/json',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
-      }
-    }) 
-    .then(response => response.json())
-    .then(data => document.querySelector("#result").innerHTML= data)  
+    
+    $.ajax({
+  url: 'https://preprod-balance.mos.ru/jenkins/view/BGU/api/json',
+
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic dmlld2VyOjhRWFdhVkVydkQ3emRJVHdGekFL'
+  },
+  success: function(data) {
+    employeeJson = data;
+    console.log(data);
+  },
+  error: function(error) {
+    console.log('Error:', error);
+  }
+});
   }
 
+
+  function convertJsonToBootstrapTable(){
+        //Get the headers from JSON data
+        var headers = Object.keys(employeeJson.jobs[0]);
+        //Prepare html header
+        var headerRowHTML='<tr>';
+        for(var i=0;i<headers.length;i++){
+          headerRowHTML+='<th>'+headers[i]+'</th>';
+        }
+        headerRowHTML+='</tr>';
+        //Prepare all the employee records as HTML
+        var allRecordsHTML='';
+        for(var i=0;i<employeeJson.jobs.length;i++){
+          //Prepare html row
+          allRecordsHTML+='<tr>';
+          for(var j=0;j<headers.length;j++){
+            var header=headers[j];
+            allRecordsHTML+='<td>'+employeeJson.jobs[i][header]+'</td>';
+          }
+          allRecordsHTML+='</tr>';
+        }
+        //Append the table header and all records
+        var table=document.getElementById("display_json_data");
+        table.innerHTML=headerRowHTML + allRecordsHTML;
+      }
 </script>
 
 </html>
