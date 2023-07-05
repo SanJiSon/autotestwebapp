@@ -443,7 +443,7 @@
   },
   success: function(data) {
     employeeJson = data;
-    convertJsonToBootstrapTable()
+    convertJsonToTable()
     console.log(data);
   },
   error: function(error) {
@@ -453,7 +453,7 @@
   }
 
 
-  function convertJsonToBootstrapTable(){
+  function convertJsonToTable(){
         //Get the headers from JSON data
         var headers = Object.keys(employeeJson.jobs[0]);
         //Prepare html header
