@@ -53,6 +53,19 @@
       user-select: none;
     }
 
+    .container-fluid {
+      margin: 10px 0;
+      padding: 20px 20px 8px;
+      border-radius: 12px;
+      box-shadow:
+        0 6px 38px #20202012,
+        0 5.2992px 19.8208px #2020200d,
+        0 2.7216px 9.3024px #2020200a,
+        0 1.0944px 4.0736px #20202008,
+        0 .2448px 1.7632px #20202005;
+      user-select: none;
+    }
+   
     .title {
       margin-bottom: 12px;
       color: #6b7280;
@@ -444,13 +457,8 @@
         //Get the headers from JSON data
         var headers = Object.keys(employeeJson.jobs[0]);
         //Prepare html header
-        var headerRowHTML='<tr>';
-        for(var i=0;i<headers.length;i++){
-          if (headers[i]==='name') {
-            headerRowHTML+='<th>'+headers[i]+'</th>';
-          }
-        }
-        headerRowHTML+='</tr>';
+        var headerRowHTML='<div class="title">Список тестов</div>';
+        
         //Prepare all the employee records as HTML
         var allRecordsHTML='';
         for(var i=0;i<employeeJson.jobs.length;i++){
@@ -462,7 +470,7 @@
 
             if (header==='name') {
                 
-            allRecordsHTML+='<td>'+employeeJson.jobs[i][header]+'</td>';
+            allRecordsHTML+='<td class="parameters-item">'+employeeJson.jobs[i][header]+'</td>';
             if (j = (headers.length-1)) {
               allRecordsHTML+=  '<td>  <div id="btn" class="btn"> <button onclick="setClickedButton(\'MS\')">Запустить</button></div> </td>'
             }
@@ -473,8 +481,7 @@
         }
         //Append the table header and all records
         var table=document.getElementById("display_json_data");
-         table.innerHTML=' <div id="pipelineList" class="container2" style="display:block;"> <div class="title"> Pipelines </div> <div class="content"> ' 
-          + headerRowHTML + allRecordsHTML + '  </div> </div> </div>';
+         table.innerHTML=headerRowHTML + allRecordsHTML;
       }
 </script>
 
