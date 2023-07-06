@@ -55,7 +55,14 @@
       user-select: none;
     }
 
+input[type="text"] {
 
+  font-size:1rem;
+
+  border-radius:22px;
+  text-align:center;
+
+}
     .container-fluid {
       margin: 10px 0;
       padding: 20px 20px 8px;
@@ -270,6 +277,7 @@ h1 {
   text-align: center;
   margin-bottom: 50px;
   font-size:16pt;
+  padding-top: 16px;
 }
 
 #checkbox {
@@ -277,7 +285,7 @@ h1 {
   margin 0 auto;
 }
 
-.container3 {
+.container-checkboxs {
   height: 100%;
   align-items: center;
   text-align: center;
@@ -293,6 +301,128 @@ h1 {
       user-select: none;
 }
 
+
+:root {
+
+--input-color: #99A3BA;
+--input-border: #CDD9ED;
+--input-background: #fff;
+--input-placeholder: #CBD1DC;
+
+--input-border-focus: #275EFE;
+
+--group-color: var(--input-color);
+--group-border: var(--input-border);
+--group-background: #EEF4FF;
+
+--group-color-focus: #fff;
+--group-border-focus: var(--input-border-focus);
+--group-background-focus: #678EFE;
+
+}
+
+.form-field {
+display: block;
+width: 100%;
+padding: 8px 16px;
+line-height: 25px;
+font-size: 14px;
+font-weight: 500;
+font-family: inherit;
+border-radius: 6px;
+-webkit-appearance: none;
+color: var(--input-color);
+border: 1px solid var(--input-border);
+background: var(--input-background);
+transition: border .3s ease;
+&::placeholder {
+    color: var(--input-placeholder);
+    
+}
+&:focus {
+    outline: none;
+    border-color: var(--input-border-focus);
+}
+}
+
+.form-group {
+position: relative;
+display: flex;
+width: 100%;
+& > span,
+.form-field {
+    white-space: nowrap;
+    display: block;
+    &:not(:first-child):not(:last-child) {
+        border-radius: 0;
+    }
+    &:first-child {
+        border-radius: 6px 0 0 6px;
+    }
+    &:last-child {
+        border-radius: 0 6px 6px 0;
+    }
+    &:not(:first-child) {
+        margin-left: -1px;
+    }
+}
+.form-field {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+& > span {
+    text-align: center;
+    width: 20%;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--group-color);
+    background: var(--group-background);
+    border: 1px solid var(--group-border);
+    transition: background .3s ease, border .3s ease, color .3s ease;
+}
+&:focus-within {
+    & > span {
+        color: var(--group-color-focus);
+        background: var(--group-background-focus);
+        border-color: var(--group-border-focus);
+    }
+}
+}
+
+html {
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+}
+
+* {
+box-sizing: inherit;
+&:before,
+&:after {
+    box-sizing: inherit;
+}
+}
+
+// Center
+body {
+min-height: 100vh;
+font-family: 'Mukta Malar', Arial;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background: #F5F9FF;  
+.form-group {
+    max-width: 360px;
+    &:not(:last-child) {
+        margin-bottom: 32px;
+    }
+}
+}
   </style>
 </head>
 
@@ -405,12 +535,11 @@ h1 {
     <div id="paramList" class="container2" style="display:none;">
       <div class="title">Параметры теста</div>
       <div class="content">
-        <div class="parameters-item">
-          <div>
-            node<br>
-            </div>
-          <div class="seldiv">
-            <select id="selectvalue"> <!-- Позже добавить автополучение списка нод (сборщики)-->
+
+        <div class="form-group">
+          
+          <span>nodes</span>
+            <select class="form-field"> <!-- Позже добавить автополучение списка нод (сборщики)-->
               <option>m1.n.service.preprod.local</option>
               <option>m2.n.service.preprod.local</option>
               <option>m3.n.service.preprod.local</option>
@@ -420,72 +549,49 @@ h1 {
               <option>m7.n.service.preprod.local</option>
               <option>m8.n.service.preprod.local</option>
             </select>
-          </div>
         </div>
         
-        <div class="parameters-item">
-          <div>
-            restore<br>
-          </div>
-          <div class="restoreDiv">
-            <input type="text" id="restore">
-          </div>
+        <div class="form-group">
+          <span>restore</span>
+          <input autofocus class="form-field" type="text" placeholder="введите список баз через запятую">
         </div>
 
-        <div class="parameters-item">
-          <div>
-            reset passwords<br>
-          </div>
-          <div class="resetDiv">
-            <input type="text" id="reset">
-          </div>
+        <div class="form-group">
+          <span>reset</span>
+          <input class="form-field" type="text" placeholder="введите список баз через запятую" >
         </div>
 
-        <div class="parameters-item">
-          <div>
-            snapshot<br>
-          </div>
-          <div class="snapshotDiv">
-            <input type="text" id="snapshot">
-          </div>
+        
+        <div class="form-group">
+          <span>snapshot</span>
+          <input class="form-field" type="text" placeholder="введите список баз через запятую">
         </div>
 
-        <div class="parameters-item">
-          <div>
-            rollback<br>
-          </div>
-          <div class="rollbackDiv">
-            <input type="text" id="rollback">
-          </div>
+        <div class="form-group">
+          <span>rollback</span>
+          <input class="form-field" type="text" placeholder="введите список баз через запятую">
         </div>
 
-        <div class="parameters-item">
-          <div>
-            update bases<br>
-          </div>
-          <div class="updatekDiv">
-            <input type="text" id="update">
-          </div>
+        <div class="form-group">
+          <span>update</span>
+          <input class="form-field" type="text" placeholder="введите список баз через запятую">
         </div>
             
-        <div class="parameters-item">
-          <div>
-             cf path<br>
-          </div>
-          <div class="cfpathkDiv">
-            <input type="text" id="cfpath">
-          </div>
+        <div class="form-group">
+          <span>cfpath</span>
+          <input class="form-field" type="text" placeholder="вставьте ссылку на cf-файл">
         </div>
           
-        <div class="parameters-item">
-          <div>
-            test params<br>
-          </div>
-          <div class="testparamsDiv">
-            <input type="text" id="testparams">
-          </div>
-        </div>               
+        <div class="form-group">
+          <span>params</span>
+          <input class="form-field" type="text" placeholder="вставьте параметры теста в json">
+        </div>        
     </div>
+
+    <div id="btn_settings" class="btn_settings">
+      <button >clickedButton</button>
+    </div>
+
     <br>
     <br>
     <div class="container-fluid">
@@ -493,8 +599,9 @@ h1 {
       </table>
     </div> 
 
+  
       
-      <div class="container3">
+      <div class="container-checkboxs">
         <h1>Выберите вид тестирования</h1>
         <div id="checkboxs">
 
