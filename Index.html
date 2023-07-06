@@ -20,6 +20,8 @@
     Telegram.WebApp.onEvent('themeChanged', setThemeClass);
     setThemeClass();
   </script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <title>Пример</title>
   <style>
     body {
@@ -52,6 +54,7 @@
         0 .2448px 1.7632px #20202005;
       user-select: none;
     }
+
 
     .container-fluid {
       margin: 10px 0;
@@ -89,6 +92,15 @@
       grid-template-columns: 3fr 7fr;
       gap: 16px;
       align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    .tests-item {
+      display: grid;
+      grid-template-columns: 1fr 7fr;
+      gap: 16px;
+      align-items: left;
       padding: 12px 0;
       border-top: 1px solid #e5e5e5;
     }
@@ -192,99 +204,85 @@
     }
 
 
+/* =============================================
+* checkbox BUTTONS
+=============================================== */
 
-fieldset {
-
-
-	border-radius: 20px;
-
-	display: inline-block;
-	border: none;
-
-
-      padding: 20px 20px 8px;
-
-      box-shadow:
-        0 6px 38px #20202012,
-        0 5.2992px 19.8208px #2020200d,
-        0 2.7216px 9.3024px #2020200a,
-        0 1.0944px 4.0736px #20202008,
-        0 .2448px 1.7632px #20202005;
-      user-select: none;
-  
+#checkboxs label {
+  cursor: pointer;
+  position: relative;
 }
 
-legend {
-
-	font-weight: bold;
-	background: #ffffff;
-	backdrop-filter: blur(2px);
-	border-radius: 20px;
-	padding: 10px 20px;
-	color: black;
-	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  color: #6b7280;
-      font-family: "Public Sans", sans-serif;
-      font-size: 16px;
+#checkboxs label + label {
+  margin-left: 15px;
 }
 
-input[type="radio"] {
-	appearance: none;
-	-webkit-appearance: none;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	margin-right: 10px;
-	background-color: white;
-	position: relative;
-	top: 6px;
-  
+input[type="checkbox"] {
+  opacity: 0; /* hidden but still tabable */
+  position: absolute;
 }
 
-input[type="radio"]:checked::before {
-	content: "";
-	display: block;
-	width: 12px;
-	height: 12px;
-	background-color: #1ac428;
-	border-radius: 50%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	animation: appear 0.8s;
-}
-
-label {
-	font-weight: bold;
-
+input[type="checkbox"] + span {
+  font-family: 'Material Icons';
   color: #000000;
-      font-family: "Public Sans", sans-serif;
-      font-size: 16px;
+  border-radius: 50%;
+  padding: 12px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
 }
 
+input[type="checkbox"]:checked + span {
+  color: #D9E7FD;
+  background-color: #4285F4;
+}
 
+input[type="checkbox"]:focus + span {
+  color: #fff;
+}
 
-@keyframes appear {
-	0% {
-		transform: translate(-50%, -50%) scale(0);
-		background-color: #fff;
-	}
-	45% {
-		transform: translate(-50%, -50%) scale(1.6);
-		background-color: #64aedf;
-	}
-	50% {
-		transform: translate(-50%, -50%) scale(1.7);
-		background-color: #ad97b3;
-	}
-	55% {
-		transform: translate(-50%, -50%) scale(1.6);
-	}
-	100% {
-		transform: translate(-50%, -50%) scale(1);
-		background-color: #1ac428;
-	}
+/* ================ TOOLTIPS ================= */
+
+#checkbox label:hover::before {
+  content: attr(for);
+  font-family: Roboto, -apple-system, sans-serif;
+  text-transform: capitalize;
+  font-size: 11px;
+  position: absolute;
+  top: 170%;
+  left: 0;
+  right: 0;
+  opacity: 0.75;
+  background-color: #323232;
+  color: #fff;  
+  padding: 4px;
+  border-radius: 3px;
+  display: block;
+}
+
+/* =============================================
+* CENTERING, CONTAINER STYLING ETC || IGNORE
+=============================================== */
+
+h1 {
+  font-weight: 300;
+  color: #050505;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#checkbox {
+  text-align: center;
+  margin 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+}
+
+.container3 {
+  height: 100%;
+  align-items: center;
+  text-align: center;
 }
 
   </style>
@@ -487,20 +485,21 @@ label {
       </table>
     </div> 
 
+      
+      <div class="container3">
+        <h1>Выберите вид тестирования</h1>
+        <div id="checkboxs">
 
-    <fieldset>
-      <legend>Выберите вид тестов: </legend>
-    
-      <div style="display: flex; align-items: center; margin-bottom: 20px;">
-        <input type="radio" id="smoke"  value="smoke">
-        <label for="smoke">Smoke test</label>
-      </div>
-    
-      <div>
-        <input type="radio" id="behaviour" value="behaviour">
-        <label for="behaviour">Behaviour test</label>
-      </div>
-    </fieldset>
+          <label for="driving" class="material-icons">
+            <input type="checkbox" name="mode" id="smoke" value="smoke" checked/>
+            <span>&#xE536;</span>
+          </label>    
+
+          <label for="cycling" class="material-icons">
+            <input type="checkbox" name="mode" id="behaviour" value="behaviour" />
+            <span>&#xE52F;</span>
+          </label>
+        </div>
 
 </body>
 
