@@ -232,13 +232,14 @@ input[type="checkbox"] + span {
 }
 
 input[type="checkbox"]:checked + span {
-  color: #D9E7FD;
+  color: #fff;
   background-color: #4285F4;
 }
 
 input[type="checkbox"]:focus + span {
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
+
 
 /* ================ TOOLTIPS ================= */
 
@@ -268,6 +269,7 @@ h1 {
   color: #050505;
   text-align: center;
   margin-bottom: 50px;
+  font-size:16pt;
 }
 
 #checkbox {
@@ -275,14 +277,20 @@ h1 {
   margin 0 auto;
 }
 
-.container {
-  margin: 0 auto;
-}
-
 .container3 {
   height: 100%;
   align-items: center;
   text-align: center;
+  margin: 10px 0;
+      padding: 20px 20px 28px;
+      border-radius: 12px;
+      box-shadow:
+        0 6px 38px #20202012,
+        0 5.2992px 19.8208px #2020200d,
+        0 2.7216px 9.3024px #2020200a,
+        0 1.0944px 4.0736px #20202008,
+        0 .2448px 1.7632px #20202005;
+      user-select: none;
 }
 
   </style>
@@ -490,12 +498,12 @@ h1 {
         <h1>Выберите вид тестирования</h1>
         <div id="checkboxs">
 
-          <label for="driving" class="material-icons">
+          <label for="smoke" class="material-icons">
             <input type="checkbox" name="mode" id="smoke" value="smoke" checked/>
             <span>&#xE536;</span>
           </label>    
 
-          <label for="cycling" class="material-icons">
+          <label for="behaviour" class="material-icons">
             <input type="checkbox" name="mode" id="behaviour" value="behaviour" />
             <span>&#xE52F;</span>
           </label>
