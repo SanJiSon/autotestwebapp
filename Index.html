@@ -13,6 +13,7 @@
   <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="mysite.css"></link>
   <script>
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -349,6 +350,7 @@ transition: border .3s ease;
 position: relative;
 display: flex;
 width: 100%;
+padding-bottom: 4px;
 & > span,
 .form-field {
     white-space: nowrap;
@@ -384,6 +386,7 @@ width: 100%;
     background: var(--group-background);
     border: 1px solid var(--group-border);
     transition: background .3s ease, border .3s ease, color .3s ease;
+    
 }
 &:focus-within {
     & > span {
@@ -593,7 +596,7 @@ background: #F5F9FF;
     <div id="btn_settings" class="btn_settings">
       <button img="">clickedButton</button>
     </div>
-    
+
     <br>
     <br>
     <div class="container-fluid">
@@ -708,23 +711,23 @@ background: #F5F9FF;
 
   function convertJsonToTable(){
         //Get the headers from JSON data
-        var headers = Object.keys(employeeJson.jobs[0]);
+        const headers = Object.keys(employeeJson.jobs[0]);
         //Prepare html header
-        var headerRowHTML='<div class="title">Список тестов</div>';
+        const headerRowHTML='<div class="title">Список тестов</div>';
         
         //Prepare all the employee records as HTML
-        var allRecordsHTML='';
+        let allRecordsHTML='';
         for(var i=0;i<employeeJson.jobs.length;i++){
           //Prepare html row
           allRecordsHTML+='<tr>';
           
-          for(var j=0;j<headers.length;j++){
-            var header=headers[j];
+          for(let j=0; j < headers.length; j++){
+            let header = headers[j];
 
             if (header==='name') {
                 
-            allRecordsHTML+='<td class="parameters-item">'+employeeJson.jobs[i][header]+'</td>';
-            if (j = (headers.length-1)) {
+            allRecordsHTML += `<td class="parameters-item">${ employeeJson.jobs[i][header] }</td>`;
+            if (j = (headers.length - 1)) {
               allRecordsHTML+=  '<td>  <div id="btn" class="btn"> <button onclick="setClickedButton(\'MS\')">Запустить</button></div> </td>'
             }
           }
