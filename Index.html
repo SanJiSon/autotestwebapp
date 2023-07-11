@@ -283,7 +283,7 @@ h1 {
 
 #checkbox {
   text-align: center;
-  margin 0 auto;
+  margin: auto;
 }
 
 .container-checkboxs {
@@ -495,7 +495,7 @@ background: #F5F9FF;
           <i class="fas fa-spinner fa-spin"></i>
         </div>
         <div id="btn" class="btn">
-          <button onclick="setClickedButton('MS')">Запустить</button>
+          <button onclick="setClickedButton('MC')">Запустить</button>
         </div>
       </div>
       <div class="conf-item">
@@ -508,7 +508,7 @@ background: #F5F9FF;
           <i class="fas fa-spinner fa-spin"></i>
         </div>
         <div id="btn" class="btn">
-          <button onclick="setClickedButton('Adm')">Запустить</button>
+          <button onclick="setClickedButton('SERVICE')">Запустить</button>
         </div>
       </div>
     </div>
@@ -536,13 +536,9 @@ background: #F5F9FF;
     </div> -->
 
     <div id="paramList" class="container2" style="display:none;">
-      <div class="title">Параметры теста</div>   
-      
-     
+      <div class="title">Параметры теста</div>     
       <div class="content">
-
-        <div class="form-group">
-          
+        <div class="form-group">     
           <span>nodes</span>
             <select class="form-field"> <!-- Позже добавить автополучение списка нод (сборщики)-->
               <option>m1.n.service.preprod.local</option>
@@ -594,19 +590,10 @@ background: #F5F9FF;
     </div>
 
     <div id="btn_settings" class="btn_settings">
-      <button img="">clickedButton</button>
+      <button ></button>
     </div>
-
-    <br>
-    <br>
-    <div class="container-fluid">
-      <table id="display_json_data" class="table table-bordered table-striped">
-      </table>
-    </div> 
-
-  
       
-      <div class="container-checkboxs">
+      <div class="container-checkboxs" style="display:none;">
         <h1>Выберите вид тестирования</h1>
         <div id="checkboxs">
 
@@ -620,10 +607,15 @@ background: #F5F9FF;
             <span>&#xE52F;</span>
           </label>
         </div>
-
+       
+      <div id="table-pipelines" class="container-fluid">
+            <table id="display_json_data" class="table table-bordered table-striped">
+        </div> 
+      </div> 
 </body>
 
 <script>
+  let result;
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
   tg.expand(); //расширяем на все окно  
@@ -641,9 +633,13 @@ background: #F5F9FF;
         tg.MainButton.hide() //скрываем кнопку 
       }
       else { //иначе
-        document.getElementById("configList").style.display = "none";
-        document.getElementById("paramList").style.display = "block";
-        setClickedHui()
+        document.
+          getElementById("configList").style.display = "none";
+          document.getElementById("table-pipelines").style.display = "block";
+        
+        getJenkinsJSON(`view/${clickedButton}/api/json`);
+        convertJsonToTable(result);
+
         tg.MainButton.show() //показываем 
       }
     });
@@ -674,27 +670,34 @@ background: #F5F9FF;
     clickedButton = name;
   }
 
-  let employeeJson = '';
+  function startJob(name) {
+    getJenkinsJSON(`job/${name}/`);
+  }
 
-  async function setClickedHui() {
+
+  let rootUrl = 'https://preprod-balance.mos.ru/jenkins/';
+
+  async function getJenkinsJSON(params) {
     
     $.ajax({
-      url: 'https://preprod-balance.mos.ru/jenkins/view/BGU/api/json',
+      url: rootUrl + params,
 
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic dmlld2VyOjhRWFdhVkVydkQ3emRJVHdGekFL'
       },
       success: function(data) {
-        employeeJson = data;
-        convertJsonToTable()
+        result = data;
+        convertJsonToTable();
         console.log(data);
       },
       error: function(error) {
         console.log('Error:', error);
       }
     });
-  // try {
+}
+
+// try {
   //   const response = await fetch(
   //   'https://preprod-balance.mos.ru/jenkins/view/BGU/api/json',
   //   {
@@ -707,17 +710,16 @@ background: #F5F9FF;
   // } catch(e) {
   //   console.log('Error' + e)
   // } 
-}
 
   function convertJsonToTable(){
         //Get the headers from JSON data
-        const headers = Object.keys(employeeJson.jobs[0]);
+        const headers = Object.keys(result.jobs[0]);
         //Prepare html header
         const headerRowHTML='<div class="title">Список тестов</div>';
         
         //Prepare all the employee records as HTML
         let allRecordsHTML='';
-        for(var i=0;i<employeeJson.jobs.length;i++){
+        for(var i=0;i<result.jobs.length;i++){
           //Prepare html row
           allRecordsHTML+='<tr>';
           
@@ -726,9 +728,9 @@ background: #F5F9FF;
 
             if (header==='name') {
                 
-            allRecordsHTML += `<td class="parameters-item">${ employeeJson.jobs[i][header] }</td>`;
+            allRecordsHTML += `<td class="parameters-item">${ result.jobs[i][header] }</td>`;
             if (j = (headers.length - 1)) {
-              allRecordsHTML+=  '<td>  <div id="btn" class="btn"> <button onclick="setClickedButton(\'MS\')">Запустить</button></div> </td>'
+              allRecordsHTML+=  `<td>  <div id="btn" class="btn"> <button onclick="startJob('${result.jobs[i][header]}')">Запустить</button></div> </td>`
             }
           }
            
@@ -740,8 +742,11 @@ background: #F5F9FF;
          table.innerHTML=headerRowHTML + allRecordsHTML;
       }
 
+    let idleNode = "";
+
     function getIdleNodes() {
-      let nodeName = Object.keys(employeeJson.jobs[0]);
+      let nodeName = Object.keys(nodesJson.computer[0]);
+      
     }
 </script>
 
