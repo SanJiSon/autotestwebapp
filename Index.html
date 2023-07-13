@@ -534,26 +534,6 @@
     </div>
   </div>
 
-  <!-- <div class="container">
-      <div class="tabs">
-        <input type="radio" name="tab-btn" id="tab-btn-1" checked>
-        <label for="tab-btn-1">ЗКГУ</label>
-        <input type="radio" name="tab-btn" id="tab-btn-2">
-        <label for="tab-btn-2">БГУ</label>
-        <input type="radio" name="tab-btn" id="tab-btn-3">
-        <label for="tab-btn-3">Кадры 2.0</label>
-        <div id="content-1">
-          Содержимое 1...
-        </div>
-        <div id="content-2">
-          Содержимое 2...
-        </div>
-        <div id="content-3">
-          Содержимое 3...
-        </div>
-      </div>
-      </div>
-    </div> -->
 
   <div id="paramList" class="container2" style="display:none;">
     <div  id="titleParams" class="titleParams">Параметры теста</div>
@@ -605,7 +585,7 @@
 
       <div class="form-group">
         <span>params</span>
-        <input class="form-field" type="text" placeholder="вставьте параметры теста в json" id="testparams">
+        <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json" id="testparams"></textarea>
       </div>
     </div>
 
@@ -626,7 +606,7 @@
     </div>
   </div>
 
-  <div id="table-pipelines" class="container-fluid" style="display: block;">
+  <div id="table-pipelines" class="container-fluid" style="display:none;">
     <table id="display_json_data" class="table table-bordered table-striped">
   </div>
 
@@ -653,6 +633,7 @@
       }
       else { //иначе
         document.getElementById("configList").style.display = "none";
+        document.getElementById("table-pipelines").style.display = "block";
        
         getJenkinsJSON(`view/${clickedButton}/api/json`);
         convertJsonToTable(result);
@@ -665,7 +646,7 @@
 
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
-    document.getElementById("urlInputDiv").style.display = "none";
+  // document.getElementById("urlInputDiv").style.display = "none";
 
     // Создаем объект, который хотим отправить в формате JSON
     var data = {
@@ -774,13 +755,14 @@
 
   
   function getParamsForJob() {
-  
+    let param = "";
     const paramJson = result.actions[0].parameters;
     for (var i = 0; i < paramJson.length; i++) {
+     
       if (document.getElementById(paramJson[i].name) !=null) {
-      var param = document.getElementById(paramJson[i].name);
-      param.value = paramJson[i].value
-      }
+        param = document.getElementById(paramJson[i].name)
+        param.value = paramJson[i].value.replace(/ /g, '');
+      }               
     }
   }
 
