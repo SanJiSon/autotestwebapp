@@ -328,10 +328,6 @@
       display: block;
       width: 100%;
       padding: 8px 16px;
-      line-height: 25px;
-      font-size: 14px;
-      font-weight: 500;
-      font-family: inherit;
       border-radius: 6px;
       -webkit-appearance: none;
       color: var(--input-color);
@@ -358,8 +354,7 @@
 
       &>span,
       .form-field {
-        white-space: nowrap;
-        display: block;
+             display: block;
 
         &:not(:first-child):not(:last-child) {
           border-radius: 0;
@@ -446,14 +441,21 @@
       font-style: bold;
     }
 
-    #testparams {
-   height:80px;
+#testparams {
    transition:all 2s;
    -webkit-transition:all 2s;
 }
 
 #testparams:focus {
    height:300px;
+   resize: none; 
+   white-space: nowrap;
+    
+}
+
+option {
+    text-align: center;
+
 }
 
   </style>
@@ -597,7 +599,7 @@
       <div class="form-group">
         <span>params</span>
         <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json"
-          id="testparams"></textarea>
+        cols="5" row="1" id="testparams"></textarea>
       </div>
     </div>
 
@@ -626,6 +628,8 @@
 
 
 <script>
+  document.getElementById('testparams').addEventListener('input', function(e){ this.value = this.value.replace(/\n/g,'') });
+
   let result;
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
 
@@ -784,7 +788,6 @@
     let nodeName = Object.keys(nodesJson.computer[0]);
 
   }
-
 
 </script>
 
