@@ -13,8 +13,7 @@
   <script src="https://kit.fontawesome.com/2cdd5152c4.js" crossorigin="anonymous"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="mysite.css">
-  </link>
+
   <script>
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -446,6 +445,17 @@
     .titleParams {
       font-style: bold;
     }
+
+    #testparams {
+   height:80px;
+   transition:all 2s;
+   -webkit-transition:all 2s;
+}
+
+#testparams:focus {
+   height:300px;
+}
+
   </style>
 </head>
 
@@ -536,7 +546,7 @@
 
 
   <div id="paramList" class="container2" style="display:none;">
-    <div  id="titleParams" class="titleParams">Параметры теста</div>
+    <div id="titleParams" class="titleParams" style="padding-bottom: 15px;">Параметры теста</div>
     <div class="content">
       <div class="form-group">
         <span>nodes</span>
@@ -554,7 +564,8 @@
 
       <div class="form-group">
         <span>restore</span>
-        <input autofocus class="form-field" type="text" placeholder="введите список баз через запятую" id="restorebases">
+        <input autofocus class="form-field" type="text" placeholder="введите список баз через запятую"
+          id="restorebases">
       </div>
 
       <div class="form-group">
@@ -585,7 +596,8 @@
 
       <div class="form-group">
         <span>params</span>
-        <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json" id="testparams"></textarea>
+        <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json"
+          id="testparams"></textarea>
       </div>
     </div>
 
@@ -634,7 +646,7 @@
       else { //иначе
         document.getElementById("configList").style.display = "none";
         document.getElementById("table-pipelines").style.display = "block";
-       
+
         getJenkinsJSON(`view/${clickedButton}/api/json`);
         convertJsonToTable(result);
 
@@ -646,7 +658,7 @@
 
   Telegram.WebApp.onEvent('mainButtonClicked', function () {
     var url = document.getElementById("urlInput").value;
-  // document.getElementById("urlInputDiv").style.display = "none";
+    // document.getElementById("urlInputDiv").style.display = "none";
 
     // Создаем объект, который хотим отправить в формате JSON
     var data = {
@@ -674,8 +686,8 @@
 
     document.getElementById("table-pipelines").style.display = "none"
     document.getElementById("paramList").style.display = "block"
-    document.getElementById("titleParams").innerHTML = 
-    `<div id="titleParams" class="titleParams">Параметры теста - <span style="font-weight:bold;">${name}</span></div>`;
+    document.getElementById("titleParams").innerHTML =
+      `<div id="titleParams" class="titleParams">Параметры теста - <span style="font-weight:bold;">${name}</span></div>`;
     currentPage = "paramList";
     getJenkinsJSON(`job/${name}/lastBuild/api/json`);
   }
@@ -695,7 +707,7 @@
       success: function (data) {
         result = data;
         if (params.includes('view')) {
-          convertJsonToTable(); 
+          convertJsonToTable();
         }
         if (params.includes('job')) {
           getParamsForJob();
@@ -753,16 +765,16 @@
     table.innerHTML = headerRowHTML + allRecordsHTML;
   }
 
-  
+
   function getParamsForJob() {
     let param = "";
     const paramJson = result.actions[0].parameters;
     for (var i = 0; i < paramJson.length; i++) {
-     
-      if (document.getElementById(paramJson[i].name) !=null) {
+
+      if (document.getElementById(paramJson[i].name) != null) {
         param = document.getElementById(paramJson[i].name)
         param.value = paramJson[i].value.replace(/ /g, '');
-      }               
+      }
     }
   }
 
@@ -772,6 +784,8 @@
     let nodeName = Object.keys(nodesJson.computer[0]);
 
   }
+
+
 </script>
 
 </html>
