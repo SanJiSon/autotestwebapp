@@ -667,7 +667,7 @@ option {
         document.getElementById("table-pipelines").style.display = "block";
 
         getJenkinsJSON(`view/${clickedButton}/api/json`);
-        convertJsonToTable(result);
+      
         tg.MainButton.show(); 
       }
     });
@@ -751,7 +751,7 @@ option {
   // } 
 
   function convertJsonToTable() {
-    //Get the headers from JSON data
+    //Get the headers from JSON data 
     const headers = Object.keys(result.jobs[0]);
     //Prepare html header
     const headerRowHTML = '<div class="title">Список тестов</div>';
