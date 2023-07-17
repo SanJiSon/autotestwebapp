@@ -704,7 +704,8 @@ option {
       `<div id="titleParams" class="titleParams">Параметры теста - <span style="font-weight:bold;">${name}</span></div>`;
     currentPage = "paramList";
     getJenkinsJSON(`job/${name}/lastBuild/api/json`);
-    tg.MainButton.hide();
+    tg.MainButton.show();
+    tg.BackButton.show();
   }
 
 
@@ -805,6 +806,12 @@ option {
   function getIdleNodes() {
     let nodeName = Object.keys(nodesJson.computer[0]);
 
+  }
+
+  Telegram.WebApp.onEvent('backButtonClicked', function () {
+    
+    document.getElementById("paramList").style.display = "none";
+        document.getElementById("table-pipelines").style.display = "block";
   }
 
 </script>
