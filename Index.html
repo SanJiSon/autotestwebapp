@@ -646,6 +646,7 @@ option {
 
   let result;
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
+  let currentPage; // ТекущаяСтраница
 
   tg.expand(); //расширяем на все окно  
 
@@ -667,8 +668,7 @@ option {
 
         getJenkinsJSON(`view/${clickedButton}/api/json`);
         convertJsonToTable(result);
-
-        tg.MainButton.show() //показываем 
+        tg.MainButton.show(); 
       }
     });
   });
@@ -698,9 +698,7 @@ option {
     clickedButton = name;
   }
 
-  currentPage = "";
-
-  function startJob(name) {
+   function startJob(name) {
 
     document.getElementById("table-pipelines").style.display = "none"
     document.getElementById("paramList").style.display = "block"
