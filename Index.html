@@ -667,8 +667,6 @@ option {
         document.getElementById("table-pipelines").style.display = "block";
 
         getJenkinsJSON(`view/${clickedButton}/api/json`);
-      
-        tg.MainButton.show(); 
       }
     });
   });
@@ -706,6 +704,7 @@ option {
       `<div id="titleParams" class="titleParams">Параметры теста - <span style="font-weight:bold;">${name}</span></div>`;
     currentPage = "paramList";
     getJenkinsJSON(`job/${name}/lastBuild/api/json`);
+    tg.MainButton.hide();
   }
 
 
