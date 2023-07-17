@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>Пример</title>
-  <style>
+  <style >
     body {
       font-family: Public Sans, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
     }
@@ -432,14 +432,16 @@
 
 #testparams {
    transition:all 2s;
-   -webkit-transition:all 2s;
+   -webkit-transition:all 2s; 
+   overflow: hidden;
+   resize: none; 
 }
 
 #testparams:focus {
-   height:350px;
+   height:300px;
    resize: none; 
-   white-space: nowrap;
-}
+   overflow: hidden;
+} 
 
 option {
 }
@@ -585,7 +587,8 @@ option {
       <div class="form-group">
         <span>params</span>
         <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json"
-        cols="5" row="1" id="testparams"></textarea>
+        id="testparams"> </textarea>
+      
       </div>
     </div>
 
@@ -614,7 +617,32 @@ option {
 
 
 <script>
-  document.getElementById('testparams').addEventListener('input', function(e){ this.value = this.value.replace(/\n/g,'') });
+
+      // Функция для преобразования JSON строки в многострочную строку с символами переноса строки
+      function formatJSONMultiline(jsonString) {
+        return JSON.stringify(JSON.parse(jsonString), null, 2);
+      }
+
+      // Функция для преобразования многострочной строки с символами переноса строки в JSON строку
+      function parseJSONMultiline(multilineString) {
+        return JSON.stringify(JSON.parse(multilineString.replace(/\n/g, '')));
+      }
+
+      // Обработчик события фокуса на textarea
+      const jsonTextarea = document.getElementById('testparams');
+      jsonTextarea.addEventListener('focus', function () {
+        // Преобразуем JSON строку в многострочную строку
+        jsonTextarea.value = formatJSONMultiline(jsonTextarea.value);
+        jsonTextarea.rows = 10; // Высота textarea для многострочного отображения
+      });
+
+      // Обработчик события потери фокуса на textarea
+      jsonTextarea.addEventListener('blur', function () {
+        // Преобразуем многострочную строку в JSON строку
+        jsonTextarea.value = parseJSONMultiline(jsonTextarea.value);
+        jsonTextarea.rows = 1; // Восстанавливаем высоту textarea для однострочного отображения
+      });
+
 
   let result;
   let tg = window.Telegram.WebApp; //получаем объект webapp телеграма 
@@ -763,7 +791,14 @@ option {
 
       if (document.getElementById(paramJson[i].name) != null) {
         param = document.getElementById(paramJson[i].name)
-        param.value = paramJson[i].value.replace(/ /g, '');
+        if (paramJson[i].name === 'testparams'){
+          param.value = parseJSONMultiline(paramJson[i].value.replace(/ /g, ''));
+          param.rows = 1;
+        }     
+        else {
+          param.value = paramJson[i].value.replace(/ /g, '');
+        }   
+       
       }
     }
   }
