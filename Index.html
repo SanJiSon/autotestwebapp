@@ -24,7 +24,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <title>Пример</title>
-  <style >
+  <style>
     body {
       font-family: Public Sans, sans-serif, -apple-system, blinkmacsystemfont, Segoe UI, roboto, Helvetica Neue, arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol;
     }
@@ -56,9 +56,7 @@
       user-select: none;
     }
 
-    input[type="text"] {
-
-    }
+    input[type="text"] {}
 
     .container-fluid {
       margin: 10px 0;
@@ -344,7 +342,7 @@
 
       &>span,
       .form-field {
-             display: block;
+        display: block;
 
         &:not(:first-child):not(:last-child) {
           border-radius: 0;
@@ -430,22 +428,20 @@
       font-style: bold;
     }
 
-#testparams {
-   transition:all 2s;
-   -webkit-transition:all 2s; 
-   overflow: hidden;
-   resize: none; 
-}
+    #testparams {
+      transition: all 2s;
+      -webkit-transition: all 2s;
+      overflow: hidden;
+      resize: none;
+    }
 
-#testparams:focus {
-   height:300px;
-   resize: none; 
-   overflow: hidden;
-} 
+    #testparams:focus {
+      height: 300px;
+      resize: none;
+      overflow: hidden;
+    }
 
-option {
-}
-
+    option {}
   </style>
 </head>
 
@@ -534,6 +530,26 @@ option {
     </div>
   </div>
 
+  <div class="container-checkboxs" style="display:none;">
+    <h1>Выберите вид тестирования</h1>
+    <div id="checkboxs">
+
+      <label for="smoke" class="material-icons">
+        <input type="checkbox" name="mode" id="smoke" value="smoke" checked />
+        <span>&#xE536;</span>
+      </label>
+
+      <label for="behaviour" class="material-icons">
+        <input type="checkbox" name="mode" id="behaviour" value="behaviour" />
+        <span>&#xE52F;</span>
+      </label>
+    </div>
+  </div>
+
+  <div id="table-pipelines" class="container-fluid" style="display:none;">
+    <table id="display_json_data" class="table table-bordered table-striped">
+  </div>
+
 
   <div id="paramList" class="container2" style="display:none;">
     <div id="titleParams" class="titleParams" style="padding-bottom: 15px;">Параметры теста</div>
@@ -587,61 +603,42 @@ option {
       <div class="form-group">
         <span>params</span>
         <textarea class="form-field" type="text" placeholder="вставьте параметры теста в json"
-        id="testparams"> </textarea>
-      
-      </div>
-    </div>
+          id="testparams"> </textarea>
 
-    <div class="container-checkboxs" style="display:none;">
-      <h1>Выберите вид тестирования</h1>
-      <div id="checkboxs">
-
-        <label for="smoke" class="material-icons">
-          <input type="checkbox" name="mode" id="smoke" value="smoke" checked />
-          <span>&#xE536;</span>
-        </label>
-
-        <label for="behaviour" class="material-icons">
-          <input type="checkbox" name="mode" id="behaviour" value="behaviour" />
-          <span>&#xE52F;</span>
-        </label>
       </div>
     </div>
   </div>
 
-  <div id="table-pipelines" class="container-fluid" style="display:none;">
-    <table id="display_json_data" class="table table-bordered table-striped">
-  </div>
-
+  
 </body>
 
 
 <script>
 
-      // Функция для преобразования JSON строки в многострочную строку с символами переноса строки
-      function formatJSONMultiline(jsonString) {
-        return JSON.stringify(JSON.parse(jsonString), null, 2);
-      }
+  // Функция для преобразования JSON строки в многострочную строку с символами переноса строки
+  function formatJSONMultiline(jsonString) {
+    return JSON.stringify(JSON.parse(jsonString), null, 2);
+  }
 
-      // Функция для преобразования многострочной строки с символами переноса строки в JSON строку
-      function parseJSONMultiline(multilineString) {
-        return JSON.stringify(JSON.parse(multilineString.replace(/\n/g, '')));
-      }
+  // Функция для преобразования многострочной строки с символами переноса строки в JSON строку
+  function parseJSONMultiline(multilineString) {
+    return JSON.stringify(JSON.parse(multilineString.replace(/\n/g, '')));
+  }
 
-      // Обработчик события фокуса на textarea
-      const jsonTextarea = document.getElementById('testparams');
-      jsonTextarea.addEventListener('focus', function () {
-        // Преобразуем JSON строку в многострочную строку
-        jsonTextarea.value = formatJSONMultiline(jsonTextarea.value);
-        jsonTextarea.rows = 10; // Высота textarea для многострочного отображения
-      });
+  // Обработчик события фокуса на textarea
+  const jsonTextarea = document.getElementById('testparams');
+  jsonTextarea.addEventListener('focus', function () {
+    // Преобразуем JSON строку в многострочную строку
+    jsonTextarea.value = formatJSONMultiline(jsonTextarea.value);
+    jsonTextarea.rows = 10; // Высота textarea для многострочного отображения
+  });
 
-      // Обработчик события потери фокуса на textarea
-      jsonTextarea.addEventListener('blur', function () {
-        // Преобразуем многострочную строку в JSON строку
-        jsonTextarea.value = parseJSONMultiline(jsonTextarea.value);
-        jsonTextarea.rows = 1; // Восстанавливаем высоту textarea для однострочного отображения
-      });
+  // Обработчик события потери фокуса на textarea
+  jsonTextarea.addEventListener('blur', function () {
+    // Преобразуем многострочную строку в JSON строку
+    jsonTextarea.value = parseJSONMultiline(jsonTextarea.value);
+    jsonTextarea.rows = 1; // Восстанавливаем высоту textarea для однострочного отображения
+  });
 
 
   let result;
@@ -663,8 +660,11 @@ option {
         tg.MainButton.hide() //скрываем кнопку 
       }
       else { //иначе
-        document.getElementById("configList").style.display = "none";
-        document.getElementById("table-pipelines").style.display = "block";
+        var btnContainer = event.currentTarget.parentNode;
+        var container = btnContainer.closest('[class*="container"]');
+        showNextContainer(container.id)
+        // document.getElementById("configList").style.display = "none";
+        // document.getElementById("table-pipelines").style.display = "block";
 
         getJenkinsJSON(`view/${clickedButton}/api/json`);
       }
@@ -696,7 +696,7 @@ option {
     clickedButton = name;
   }
 
-   function startJob(name) {
+  function startJob(name) {
 
     document.getElementById("table-pipelines").style.display = "none"
     document.getElementById("paramList").style.display = "block"
@@ -789,14 +789,14 @@ option {
 
       if (document.getElementById(paramJson[i].name) != null) {
         param = document.getElementById(paramJson[i].name)
-        if (paramJson[i].name === 'testparams'){
+        if (paramJson[i].name === 'testparams') {
           param.value = parseJSONMultiline(paramJson[i].value.replace(/ /g, ''));
           param.rows = 1;
-        }     
+        }
         else {
           param.value = paramJson[i].value.replace(/ /g, '');
-        }   
-       
+        }
+
       }
     }
   }
@@ -813,6 +813,38 @@ option {
     document.getElementById("paramList").style.display = "none";
     document.getElementById("table-pipelines").style.display = "block";
   });
+
+
+  function showNextContainer(currentContainerId) {
+    var currentContainerElement = document.getElementById(currentContainerId);
+    var nextContainerElement = currentContainerElement.nextElementSibling;
+
+
+    if (nextContainerElement && nextContainerElement.classList.value.includes("container")) {
+      currentContainerElement.style.display = "none";
+      nextContainerElement.style.display = "block";
+    }
+  }
+
+  function showPrevContainer(currentContainerId) {
+    var currentContainerElement = document.getElementById(currentContainerId);
+    var prevContainerElement = currentContainerElement.previousElementSibling;
+
+    if (prevContainerElement && prevContainerElement.classList.contains("container")) {
+      currentContainerElement.style.display = "none";
+      prevContainerElement.style.display = "block";
+    }
+  }
+
+var checkbox = document.querySelector("input[type=checkbox]");
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    tg.MainButton.show();
+  } else {
+    tg.MainButton.hide();
+    tg.BackButton.show();
+  }
+});
 
 </script>
 
